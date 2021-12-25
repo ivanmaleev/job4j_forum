@@ -12,10 +12,13 @@ import org.springframework.test.web.servlet.MockMvc;
 import ru.job4j.forum.Main;
 import ru.job4j.forum.model.Post;
 import ru.job4j.forum.service.PostService;
+
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -33,23 +36,28 @@ public class PostControlTest {
     @WithMockUser
     public void whenCreate() throws Exception {
         this.mockMvc.perform(post("/post/create")
-                .param("name","Куплю ладу-грант. Дорого."))
+                .param("name", "Куплю ладу-грант. "))
                 .andDo(print())
                 .andExpect(status().is3xxRedirection());
         ArgumentCaptor<Post> argument = ArgumentCaptor.forClass(Post.class);
         verify(postService).create(argument.capture());
-        assertThat(argument.getValue().getName(), is("Куплю ладу-грант. Дорого."));
+        assertThat(argument.getValue().getName(), is("Куплю ладу-грант. "));
     }
 
-    /*@Test
+    @Test
     @WithMockUser
     public void whenEdit() throws Exception {
-        this.mockMvc.perform(post("/post/1")
-                .param("name","Куплю ладу-грант. Дорого."))
+        this.mockMvc.perform(post("/post/create")
+                .param("name", "Куплю ладу-грант. "))
+                .andDo(print())
+                .andExpect(status().is3xxRedirection());
+        this.mockMvc.perform(post("/post/create")
+                .param("name", "Куплю ладу-грант. Дорого.2")
+                .param("id", "1"))
                 .andDo(print())
                 .andExpect(status().is3xxRedirection());
         ArgumentCaptor<Post> argument = ArgumentCaptor.forClass(Post.class);
-        verify(postService).create(argument.capture());
-        assertThat(argument.getValue().getName(), is("Куплю ладу-грант. Дорого."));
-    }*/
+        verify(postService, times(2)).create(argument.capture());
+        assertThat(argument.getValue().getName(), is("Куплю ладу-грант. Дорого.2"));
+    }
 }

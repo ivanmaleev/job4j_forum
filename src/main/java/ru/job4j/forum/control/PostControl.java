@@ -6,9 +6,6 @@ import org.springframework.web.bind.annotation.*;
 import ru.job4j.forum.model.Post;
 import ru.job4j.forum.service.PostService;
 
-import javax.validation.Valid;
-
-
 @Controller
 public class PostControl {
     private final PostService postService;
