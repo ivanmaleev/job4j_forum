@@ -16,12 +16,6 @@ public class Post {
     private User user;*/
     private Calendar created;
 
-    public static Post of(String name) {
-        Post post = new Post();
-        post.name = name;
-        return post;
-    }
-
     public int getId() {
         return id;
     }
