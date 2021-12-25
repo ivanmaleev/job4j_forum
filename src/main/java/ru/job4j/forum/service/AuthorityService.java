@@ -1,36 +1,27 @@
 package ru.job4j.forum.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import ru.job4j.forum.model.Authority;
+import ru.job4j.forum.repository.AuthorityRepository;
 
 import java.util.*;
-import java.util.concurrent.atomic.AtomicInteger;
 
+@Service
 public class AuthorityService {
-    private final Map<String, Authority> authorities = new HashMap<>();
-    private static AtomicInteger counter = new AtomicInteger(1);
 
-    public AuthorityService() {
-        Authority authority1 = new Authority();
-        authority1.setAuthority("ROLE_USER");
-        save(authority1);
-        Authority authority2 = new Authority();
-        authority2.setAuthority("ROLE_ADMIN");
-        save(authority2);
-        authorities.put(authority2.getAuthority(), authority2);
-    }
+    @Autowired
+    private AuthorityRepository authorityRepository;
 
     public Collection<Authority> getAll() {
-        return authorities.values();
+        return authorityRepository.findAll();
     }
 
     public Authority findByAuthority(String roleUser) {
-        return authorities.get(roleUser);
+        return authorityRepository.findByAuthority(roleUser);
     }
 
     public void save(Authority authority) {
-        if (authority.getId() == 0) {
-            authority.setId(counter.getAndIncrement());
-        }
-        authorities.put(authority.getAuthority(), authority);
+        authorityRepository.save(authority);
     }
 }

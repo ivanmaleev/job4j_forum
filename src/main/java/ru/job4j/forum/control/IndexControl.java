@@ -5,6 +5,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import ru.job4j.forum.service.PostService;
 
+import java.security.Principal;
+
 @Controller
 public class IndexControl {
     private final PostService posts;
@@ -14,8 +16,9 @@ public class IndexControl {
     }
 
     @GetMapping({"/", "/index"})
-    public String index(Model model) {
+    public String index(Model model, Principal principal) {
         model.addAttribute("posts", posts.getAll());
+        model.addAttribute("username", principal.getName());
         return "index";
     }
 }
