@@ -12,8 +12,6 @@ import java.util.Collection;
 public class UserService {
 
     @Autowired
-    private AuthorityRepository authorityRepository;
-    @Autowired
     private UserRepository userRepository;
 
     public Collection<User> getAll() {
