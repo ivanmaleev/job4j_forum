@@ -4,6 +4,3 @@ create table posts (
   description text,
   created timestamp without time zone not null default now()
 );
-
-insert into posts (name) values ('О чем этот форум?');
-insert into posts (name) values ('Правила форума.');
