@@ -10,7 +10,7 @@
   </parent>
 
   <groupId>ru.job4j</groupId>
-  <artifactId>forum</artifactId>
+  <artifactId>job4j_forum</artifactId>
   <version>1.0</version>
   <packaging>war</packaging>
 
