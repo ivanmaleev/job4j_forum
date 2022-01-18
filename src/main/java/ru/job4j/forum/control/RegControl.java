@@ -1,6 +1,6 @@
 package ru.job4j.forum.control;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,19 +12,12 @@ import ru.job4j.forum.service.AuthorityService;
 import ru.job4j.forum.service.UserService;
 
 @Controller
+@RequiredArgsConstructor
 public class RegControl {
 
     private final PasswordEncoder encoder;
     private final UserService userService;
     private final AuthorityService authorityService;
-
-    @Autowired
-    public RegControl(UserService userService, AuthorityService authorityService,
-                      PasswordEncoder encoder) {
-        this.userService = userService;
-        this.authorityService = authorityService;
-        this.encoder = encoder;
-    }
 
     @PostMapping("/reg")
     public String regSave(@ModelAttribute User user, Model model) {

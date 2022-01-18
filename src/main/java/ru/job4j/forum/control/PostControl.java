@@ -1,5 +1,6 @@
 package ru.job4j.forum.control;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -7,12 +8,10 @@ import ru.job4j.forum.model.Post;
 import ru.job4j.forum.service.PostService;
 
 @Controller
+@RequiredArgsConstructor
 public class PostControl {
-    private final PostService postService;
 
-    public PostControl(PostService postService) {
-        this.postService = postService;
-    }
+    private final PostService postService;
 
     @GetMapping("/post")
     public String getRead(@RequestParam("id") int id, Model model) {
