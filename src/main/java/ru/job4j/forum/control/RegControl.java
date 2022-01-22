@@ -1,6 +1,6 @@
 package ru.job4j.forum.control;
 
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +12,7 @@ import ru.job4j.forum.service.AuthorityService;
 import ru.job4j.forum.service.UserService;
 
 @Controller
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class RegControl {
 
     private final PasswordEncoder encoder;

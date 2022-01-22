@@ -1,6 +1,6 @@
 package ru.job4j.forum.service.impl;
 
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.job4j.forum.model.Post;
 import ru.job4j.forum.repository.PostRepository;
@@ -11,7 +11,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class PostServiceImpl implements PostService {
 
     private final PostRepository postRepository;

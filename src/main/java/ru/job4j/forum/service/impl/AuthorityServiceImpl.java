@@ -1,7 +1,6 @@
 package ru.job4j.forum.service.impl;
 
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.job4j.forum.model.Authority;
 import ru.job4j.forum.repository.AuthorityRepository;
@@ -10,7 +9,7 @@ import ru.job4j.forum.service.AuthorityService;
 import java.util.Collection;
 
 @Service
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class AuthorityServiceImpl implements AuthorityService {
 
     private AuthorityRepository authorityRepository;
